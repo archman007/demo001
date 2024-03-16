@@ -1,0 +1,103 @@
+<img src="http://archman.us/images/usa_3a.gif" alt="" />
+
+The Apache configuration file may be located by issuing the following commands.
+
+[codesyntax lang="bash"]
+<pre>ls /etc/httpd/conf
+ls /etc/httpd/conf/extra
+ls /var/log/httpd/
+</pre>
+[/codesyntax]
+Output from executing the commands is:
+[codesyntax lang="bash"]
+<pre>ls /etc/httpd/conf
+ls /etc/httpd/conf/extra
+ls /var/log/httpd/
+extra  httpd.conf  magic  mime.types
+httpd-adminer-editor.conf  httpd-languages.conf           httpd-vhosts.conf
+httpd-adminer.conf         httpd-manual.conf              php_module.conf
+httpd-autoindex.conf       httpd-mpm.conf                 phpmyadmin.conf
+httpd-dav.conf             httpd-multilang-errordoc.conf  proxy-html.conf
+httpd-default.conf         httpd-ssl.conf
+httpd-info.conf            httpd-userdir.conf
+access_log  error_log
+</pre>
+[/codesyntax]
+The unmodified configuration file is listed below.
+[codesyntax lang="bash"]
+<pre># Virtual Hosts
+#
+# Required modules: mod_log_config
+
+# If you want to maintain multiple domains/hostnames on your
+# machine you can setup VirtualHost containers for them. Most configurations
+# use only name-based virtual hosts so the server doesn't need to worry about
+# IP addresses. This is indicated by the asterisks in the directives below.
+#
+# Please see the documentation at 
+# &lt;URL:http://httpd.apache.org/docs/2.4/vhosts/&gt;
+# for further details before you try to setup virtual hosts.
+#
+# You may use the command line option '-S' to verify your virtual host
+# configuration.
+
+#
+# VirtualHost example:
+# Almost any Apache directive may go into a VirtualHost container.
+# The first VirtualHost section is used for all requests that do not
+# match a ServerName or ServerAlias in any &lt;VirtualHost&gt; block.
+#
+&lt;VirtualHost *:80&gt;
+    ServerAdmin webmaster@dummy-host.example.com
+    DocumentRoot "/etc/httpd/docs/dummy-host.example.com"
+    ServerName dummy-host.example.com
+    ServerAlias www.dummy-host.example.com
+    ErrorLog "/var/log/httpd/dummy-host.example.com-error_log"
+    CustomLog "/var/log/httpd/dummy-host.example.com-access_log" common
+&lt;/VirtualHost&gt;
+
+&lt;VirtualHost *:80&gt;
+    ServerAdmin webmaster@dummy-host2.example.com
+    DocumentRoot "/etc/httpd/docs/dummy-host2.example.com"
+    ServerName dummy-host2.example.com
+    ErrorLog "/var/log/httpd/dummy-host2.example.com-error_log"
+    CustomLog "/var/log/httpd/dummy-host2.example.com-access_log" common
+&lt;/VirtualHost&gt;
+
+
+
+</pre>
+[/codesyntax]
+Add the lines for the new configuration as follows.
+[codesyntax lang="bash"]
+<pre>&lt;VirtualHost *:80&gt;
+    ServerAdmin webmaster@example.com
+    DocumentRoot /path/to/your/yii-app/frontend/web
+
+    &lt;Directory /path/to/your/yii-app/frontend/web&gt;
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Require all granted
+    &lt;/Directory&gt;
+
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+&lt;/VirtualHost&gt;
+
+&lt;VirtualHost *:80&gt;
+    ServerAdmin webmaster@example.com
+    DocumentRoot /path/to/your/yii-app/backend/web
+
+    &lt;Directory /path/to/your/yii-app/backend/web&gt;
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Require all granted
+    &lt;/Directory&gt;
+
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+&lt;/VirtualHost&gt;
+</pre>
+[/codesyntax]
+
+Mr. Arch Brooks, Software Engineer, Brooks Computing Systems, LLC authored this article.
