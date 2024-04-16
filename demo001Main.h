@@ -16,31 +16,29 @@
 #include <wx/statusbr.h>
 //*)
 
-class demo001Frame: public wxFrame
+class demo001Frame : public wxFrame
 {
-    public:
+public:
+    demo001Frame(wxWindow *parent, wxWindowID id = -1);
+    virtual ~demo001Frame();
 
-        demo001Frame(wxWindow* parent,wxWindowID id = -1);
-        virtual ~demo001Frame();
+private:
+    //(*Handlers(demo001Frame)
+    void OnQuit(wxCommandEvent &event);
+    void OnAbout(wxCommandEvent &event);
+    //*)
 
-    private:
+    //(*Identifiers(demo001Frame)
+    static const long idMenuQuit;
+    static const long idMenuAbout;
+    static const long ID_STATUSBAR1;
+    //*)
 
-        //(*Handlers(demo001Frame)
-        void OnQuit(wxCommandEvent& event);
-        void OnAbout(wxCommandEvent& event);
-        //*)
+    //(*Declarations(demo001Frame)
+    wxStatusBar *StatusBar1;
+    //*)
 
-        //(*Identifiers(demo001Frame)
-        static const long idMenuQuit;
-        static const long idMenuAbout;
-        static const long ID_STATUSBAR1;
-        //*)
-
-        //(*Declarations(demo001Frame)
-        wxStatusBar* StatusBar1;
-        //*)
-
-        DECLARE_EVENT_TABLE()
+    DECLARE_EVENT_TABLE()
 };
 
 #endif // DEMO001MAIN_H

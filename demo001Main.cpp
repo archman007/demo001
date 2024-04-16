@@ -15,15 +15,18 @@
 #include <wx/string.h>
 //*)
 
-//helper functions
-enum wxbuildinfoformat {
-    short_f, long_f };
+// helper functions
+enum wxbuildinfoformat
+{
+    short_f,
+    long_f
+};
 
 wxString wxbuildinfo(wxbuildinfoformat format)
 {
     wxString wxbuild(wxVERSION_STRING);
 
-    if (format == long_f )
+    if (format == long_f)
     {
 #if defined(__WXMSW__)
         wxbuild << _T("-Windows");
@@ -47,19 +50,19 @@ const long demo001Frame::idMenuAbout = wxNewId();
 const long demo001Frame::ID_STATUSBAR1 = wxNewId();
 //*)
 
-BEGIN_EVENT_TABLE(demo001Frame,wxFrame)
-    //(*EventTable(demo001Frame)
-    //*)
+BEGIN_EVENT_TABLE(demo001Frame, wxFrame)
+//(*EventTable(demo001Frame)
+//*)
 END_EVENT_TABLE()
 
-demo001Frame::demo001Frame(wxWindow* parent,wxWindowID id)
+demo001Frame::demo001Frame(wxWindow *parent, wxWindowID id)
 {
     //(*Initialize(demo001Frame)
-    wxMenu* Menu1;
-    wxMenu* Menu2;
-    wxMenuBar* MenuBar1;
-    wxMenuItem* MenuItem1;
-    wxMenuItem* MenuItem2;
+    wxMenu *Menu1;
+    wxMenu *Menu2;
+    wxMenuBar *MenuBar1;
+    wxMenuItem *MenuItem1;
+    wxMenuItem *MenuItem2;
 
     Create(parent, id, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxDEFAULT_FRAME_STYLE, _T("id"));
     MenuBar1 = new wxMenuBar();
@@ -73,14 +76,14 @@ demo001Frame::demo001Frame(wxWindow* parent,wxWindowID id)
     MenuBar1->Append(Menu2, _("Help"));
     SetMenuBar(MenuBar1);
     StatusBar1 = new wxStatusBar(this, ID_STATUSBAR1, 0, _T("ID_STATUSBAR1"));
-    int __wxStatusBarWidths_1[1] = { -1 };
-    int __wxStatusBarStyles_1[1] = { wxSB_NORMAL };
-    StatusBar1->SetFieldsCount(1,__wxStatusBarWidths_1);
-    StatusBar1->SetStatusStyles(1,__wxStatusBarStyles_1);
+    int __wxStatusBarWidths_1[1] = {-1};
+    int __wxStatusBarStyles_1[1] = {wxSB_NORMAL};
+    StatusBar1->SetFieldsCount(1, __wxStatusBarWidths_1);
+    StatusBar1->SetStatusStyles(1, __wxStatusBarStyles_1);
     SetStatusBar(StatusBar1);
 
-    Connect(idMenuQuit,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&demo001Frame::OnQuit);
-    Connect(idMenuAbout,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&demo001Frame::OnAbout);
+    Connect(idMenuQuit, wxEVT_COMMAND_MENU_SELECTED, (wxObjectEventFunction)&demo001Frame::OnQuit);
+    Connect(idMenuAbout, wxEVT_COMMAND_MENU_SELECTED, (wxObjectEventFunction)&demo001Frame::OnAbout);
     //*)
 }
 
@@ -90,12 +93,12 @@ demo001Frame::~demo001Frame()
     //*)
 }
 
-void demo001Frame::OnQuit(wxCommandEvent& event)
+void demo001Frame::OnQuit(wxCommandEvent &event)
 {
     Close();
 }
 
-void demo001Frame::OnAbout(wxCommandEvent& event)
+void demo001Frame::OnAbout(wxCommandEvent &event)
 {
     wxString msg = wxbuildinfo(long_f);
     wxMessageBox(msg, _("Welcome to..."));
