@@ -26,16 +26,19 @@ private:
     //(*Handlers(demo001Frame)
     void OnQuit(wxCommandEvent &event);
     void OnAbout(wxCommandEvent &event);
+    void OnmenShowDirSelected(wxCommandEvent& event);
     //*)
 
     //(*Identifiers(demo001Frame)
+    static const long idShowDir;
     static const long idMenuQuit;
     static const long idMenuAbout;
     static const long ID_STATUSBAR1;
     //*)
 
     //(*Declarations(demo001Frame)
-    wxStatusBar *StatusBar1;
+    wxMenuItem* menShowDir;
+    wxStatusBar* StatusBar1;
     //*)
 
     DECLARE_EVENT_TABLE()

@@ -41,12 +41,16 @@
 		<Unit filename="demo001App.h" />
 		<Unit filename="demo001Main.cpp" />
 		<Unit filename="demo001Main.h" />
+		<Unit filename="dlgShowDir.cpp" />
+		<Unit filename="dlgShowDir.h" />
 		<Unit filename="wxsmith/demo001frame.wxs" />
+		<Unit filename="wxsmith/dlgShowDir.wxs" />
 		<Extensions>
 			<wxsmith version="1">
 				<gui name="wxWidgets" src="demo001App.cpp" main="demo001Frame" init_handlers="necessary" language="CPP" />
 				<resources>
 					<wxFrame wxs="wxsmith/demo001frame.wxs" src="demo001Main.cpp" hdr="demo001Main.h" fwddecl="0" i18n="1" name="demo001Frame" language="CPP" />
+					<wxDialog wxs="wxsmith/dlgShowDir.wxs" src="dlgShowDir.cpp" hdr="dlgShowDir.h" fwddecl="0" i18n="1" name="dlgShowDir" language="CPP" />
 				</resources>
 			</wxsmith>
 		</Extensions>
